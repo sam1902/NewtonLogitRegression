@@ -11,6 +11,7 @@
 #include "vector_utils.h" /* Contient les fonctions de manipulation de vecteurs */
 #include "functions_init.h" /* Contient la fonction objectif, ses dérivées et des aides à leurs calculs */
 
+void prediction(const double* theta);
 double** load_data_file(const char* file_name);
 
 int main(){
@@ -84,8 +85,25 @@ int main(){
     printf("Convergence à %.15f près en %d iterations\n", EPS, iteration);
     printf("Theta optimal:\n");
     print_vect_precise(theta);
+    printf("Mode prédiction:\n");
+    prediction(theta);
     return 0;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+void prediction(const double* theta){
+    double* x = init_vect(3);
+    x[2] = 1;
+    while (true){
+        printf("Note 1: ");
+        scanf("%lf", x);
+        printf("Note 2: ");
+        scanf("%lf", x+1);
+        printf("Proba de réussir: %.3f%%\n", (sig(prod(theta, x))*100));
+    }
+}
+#pragma clang diagnostic pop
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cert-err34-c"
