@@ -15,6 +15,7 @@
  * @return 1 si le systeme a une unique solution et 0 sinon
  */
 int gauss(int n_dim, double** C, double* C0, double* x){
+    // Crédits: Auteur de l'UE de MOCA
     int imin;
     double pivot;
     double sum, valmin, temp1, temp2;
